@@ -31,7 +31,7 @@ Then press **Validate**.
 | name | `slatebox` |
 | displayName | Slatebox |
 | version | 0.1.0 |
-| description | Mind maps, flowcharts, project plans, smart boards and presentations, drawn as real notes and lines on a shared Slatebox canvas that your team can open and edit together. |
+| description | Slatebox is an open source visual intelligence platform where you can invite any AI via MCP to collaborate with you and your team. Draw mind maps, flowcharts, project plans, smart boards and presentations as real notes and lines on a shared canvas. |
 | author | Slatebox LLC, https://slatebox.com |
 | icon | `./assets/slatebox-icon-512.png` (512×512 PNG) |
 | documentationUrl | https://docs.slatebox.com/developers/slateboxapi/mcp/ |
