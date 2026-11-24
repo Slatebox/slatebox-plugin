@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "slatebox": {
+      "type": "http",
+      "url": "https://app.slatebox.com/mcp"
+    }
+  }
+}

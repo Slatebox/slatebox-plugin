@@ -1,0 +1,16 @@
+{
+  "name": "slatebox",
+  "description": "The Slatebox plugin: skills and commands for drawing and reading slates with the hosted Slatebox MCP server.",
+  "owner": {
+    "name": "Slatebox LLC",
+    "url": "https://slatebox.com"
+  },
+  "plugins": [
+    {
+      "name": "slatebox",
+      "source": "./",
+      "description": "Mind maps, flowcharts, project plans, smart boards and presentations on a shared Slatebox canvas.",
+      "category": "productivity"
+    }
+  ]
+}

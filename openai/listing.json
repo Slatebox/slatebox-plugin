@@ -1,0 +1,84 @@
+{
+  "_comment": "OpenAI-only metadata. scripts/build-openai.mjs merges this into the ZIP's plugin.json as extensions[\"com.openai\"]. Shared fields (name, version, description, author, license, keywords) come from .claude-plugin/plugin.json. Never put test credentials or reviewer instructions here: the portal's Review details form takes them.",
+  "mcpAuth": {
+    "type": "oauth",
+    "client": { "mode": "dcr" },
+    "registrationUrl": "https://app.slatebox.com/oauth/register"
+  },
+  "interface": {
+    "displayName": "Slatebox",
+    "shortDescription": "Mind maps and diagrams",
+    "longDescription": "Create mind maps, flowcharts, project plans and smart boards as editable slates. Slatebox draws them as real notes and lines on a shared canvas and returns a link that your team can open and edit together.\n\nWith Slatebox you can:\n- draw a mind map, a flowchart or a Gantt-chart project plan from a description or from Mermaid\n- read a slate, summarise it, and get it back as Mermaid\n- add boards such as a pipeline, hiring plan or launch plan, with rules that hold when cards move\n- restyle a slate's presentation, which plays on the live canvas\n- ask the Slatebox agent to work on a slate in the open, with removals held for a person\n\nEvery call acts as you and reaches only the slates you can open. Changes that remove or overwrite work ask for your confirmation first.",
+    "developerName": "Slatebox LLC",
+    "category": "Productivity",
+    "capabilities": [],
+    "websiteURL": "https://slatebox.com",
+    "supportURL": "https://slatebox.com/contact/",
+    "privacyPolicyURL": "https://slatebox.com/privacy/",
+    "termsOfServiceURL": "https://slatebox.com/terms/",
+    "defaultPrompt": [
+      "Make a mind map of our Q1 launch ideas",
+      "Turn these steps into a flowchart",
+      "Draft a six-week hiring plan as a Gantt chart"
+    ],
+    "brandColor": "#1d2026",
+    "brandColorDark": "#fbcc88",
+    "logo": "./assets/slatebox-icon-512.png",
+    "composerIcon": "./assets/slatebox-icon-512.png",
+    "onboardingSkill": "./skills/make-mind-map/SKILL.md"
+  },
+  "review": {
+    "test_cases": {
+      "positive": [
+        {
+          "description": "Mind map from a topic",
+          "prompt": "Make a mind map of ideas for our team offsite.",
+          "tools_triggered": ["import_mermaid"],
+          "expected_behavior": "Creates a new slate holding a mind map with a root and several branches of offsite ideas, and replies with the slate link."
+        },
+        {
+          "description": "Flowchart from a chain of steps",
+          "prompt": "Flowchart this: request, manager review, finance approval, paid.",
+          "tools_triggered": ["create_slate"],
+          "expected_behavior": "Creates a new slate with four connected notes in order (Request, Manager review, Finance approval, Paid) and replies with the slate link."
+        },
+        {
+          "description": "Project plan as a Gantt chart",
+          "prompt": "Draft a six-week hiring plan for two engineers as a Gantt chart.",
+          "tools_triggered": ["import_mermaid"],
+          "expected_behavior": "Creates a new slate with a Gantt plan of phases and tasks spanning about six weeks, and replies with the dates and the slate link."
+        },
+        {
+          "description": "Mermaid made editable",
+          "prompt": "Make this something my team can edit: graph TD; A-->B; B-->C",
+          "tools_triggered": ["import_mermaid"],
+          "expected_behavior": "Creates a new slate with three notes (A, B, C) joined by two lines, and replies with the slate link."
+        },
+        {
+          "description": "Read a slate back",
+          "prompt": "Summarise the slate at https://app.slatebox.com/canvas/DEMO_SHARE_ID and give it to me as Mermaid.",
+          "tools_triggered": ["export_mermaid", "get_slate"],
+          "expected_behavior": "Returns a short summary of the demo slate and its Mermaid text in a code block, and makes no changes."
+        }
+      ],
+      "negative": [
+        {
+          "description": "An explanation, nothing to draw",
+          "prompt": "What is a mind map?"
+        },
+        {
+          "description": "Unrelated writing task",
+          "prompt": "Write a cover letter for a product manager job."
+        },
+        {
+          "description": "Unrelated calculation",
+          "prompt": "Convert 20 US dollars to euros."
+        }
+      ]
+    },
+    "commerce": false
+  },
+  "publication": {
+    "release_notes": "First release: mind maps, flowcharts, project plans, smart boards, slate summaries, presentations and the Slatebox agent."
+  }
+}

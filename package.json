@@ -1,0 +1,16 @@
+{
+  "name": "slatebox-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Build and check scripts for the Slatebox plugin (Claude and OpenAI).",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build:openai": "node scripts/build-openai.mjs",
+    "build:openai:final": "node scripts/build-openai.mjs --final",
+    "validate:claude": "claude plugin validate . --strict"
+  },
+  "devDependencies": {
+    "ajv": "8.17.1"
+  }
+}

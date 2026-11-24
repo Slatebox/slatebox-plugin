@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "slatebox",
+  "displayName": "Slatebox",
+  "version": "0.1.0",
+  "description": "Mind maps, flowcharts, project plans, smart boards and presentations, drawn as real notes and lines on a shared Slatebox canvas that your team can open and edit together.",
+  "author": {
+    "name": "Slatebox LLC",
+    "url": "https://slatebox.com"
+  },
+  "homepage": "https://slatebox.com",
+  "repository": "https://github.com/Slatebox/slatebox-plugin",
+  "license": "MIT",
+  "keywords": [
+    "slatebox",
+    "mind-map",
+    "flowchart",
+    "diagram",
+    "mermaid",
+    "gantt",
+    "project-planning",
+    "whiteboard",
+    "presentation",
+    "collaboration",
+    "mcp"
+  ],
+  "icon": "./assets/slatebox-icon-512.png",
+  "documentationUrl": "https://docs.slatebox.com/developers/slateboxapi/mcp/",
+  "supportUrl": "https://slatebox.com/contact/",
+  "privacyPolicyUrl": "https://slatebox.com/privacy/",
+  "termsOfServiceUrl": "https://slatebox.com/terms/"
+}
