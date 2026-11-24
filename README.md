@@ -1,6 +1,6 @@
 # Slatebox plugin
 
-Draw mind maps, flowcharts, project plans and smart boards on a [Slatebox](https://slatebox.com) slate from a chat, read slates back, restyle their presentations and invite the Slatebox agent to work on them. Every slate has a link your team can open and edit together, live.
+Draw mind maps, flowcharts, project plans and smart boards on a [Slatebox](https://slatebox.com) slate from a chat, read slates back, turn them into presentations and invite the Slatebox agent to work on them. Every slate has a link your team can open and edit together, live.
 
 One plugin serves both Claude (Claude.ai, Claude Desktop, Cowork and Claude Code) and OpenAI (ChatGPT and Codex). It connects to the hosted Slatebox MCP server at `https://app.slatebox.com/mcp`. You sign in with your Slatebox account the first time a tool runs (OAuth); the plugin holds no keys.
 
@@ -15,7 +15,7 @@ One plugin serves both Claude (Claude.ai, Claude Desktop, Cowork and Claude Code
 | `plan-project` | A project plan as a Gantt chart with phases, dates and dependencies | `import_mermaid`, `export_mermaid` |
 | `add-smart-board` | A pipeline, hiring plan, launch plan or other board with lanes, cards and rules | `list_components`, `get_slate`, `edit_slate`, `check_board_move` |
 | `read-slate` | A summary, the open actions or the Mermaid text of a slate | `export_mermaid`, `get_slate`, `list_slates` |
-| `present-slate` | A slate's presentation, restyled (voyage, stage, editorial, neon, sketch, blueprint, journey, calm) | `get_presentation`, `style_presentation` |
+| `present-slate` | A presentation of a slate, planned by Slatebox in a style (voyage, stage, editorial, neon, sketch, blueprint, journey, calm), with the link that plays it | `create_presentation`, `style_presentation`, `get_presentation` |
 | `ask-slatebox-agent` | The Slatebox agent invited onto a slate to do a task in the open | `ask_agent`, `list_agent_tasks` |
 
 Each skill ends by showing the slate link.
