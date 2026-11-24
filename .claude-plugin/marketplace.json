@@ -8,8 +8,8 @@
   "plugins": [
     {
       "name": "slatebox",
-      "source": "./",
-      "description": "Mind maps, flowcharts, project plans, smart boards and presentations on a shared Slatebox canvas.",
+      "source": "./plugin",
+      "description": "Slatebox is an open source visual intelligence platform where you can invite any AI via MCP to collaborate with you and your team.",
       "category": "productivity"
     }
   ]

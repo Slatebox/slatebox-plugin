@@ -99,11 +99,11 @@ claude mcp add slatebox-local \
 ## Repository layout
 
 ```text
-.claude-plugin/plugin.json       Claude plugin manifest (shared name, version, description)
+plugin/.claude-plugin/plugin.json     Claude plugin manifest (shared name, version, description)
 .claude-plugin/marketplace.json  makes this repo a one-plugin Claude marketplace
 .mcp.json                        the hosted MCP server, for Claude
-skills/<name>/SKILL.md           the seven skills, shared by Claude and OpenAI
-commands/*.md                    the three slash commands (Claude only)
+plugin/skills/<name>/SKILL.md         the seven skills, shared by Claude and OpenAI
+plugin/commands/*.md                the three slash commands (Claude only)
 assets/slatebox-icon-512.png     the icon
 openai/listing.json              OpenAI-only listing fields, auth and review test cases
 scripts/build-openai.mjs         builds and checks the OpenAI ZIP
@@ -123,7 +123,7 @@ npm run build:openai:final     # also fails on anything that blocks submission
 
 The OpenAI ZIP uses the portable Agent Plugins layout: `plugin.json` (with OpenAI fields under `extensions["com.openai"]`), `mcp.json`, `skills/` and `assets/`. The build checks field lengths, the category, URLs, icon size, brand-colour contrast, test cases, listing-copy rules and the agent-plugins.org 1.0.0 JSON schemas.
 
-When you release, raise `version` in `.claude-plugin/plugin.json` (and `package.json`).
+When you release, raise `version` in `plugin/.claude-plugin/plugin.json` (and `package.json`).
 
 ## Support
 

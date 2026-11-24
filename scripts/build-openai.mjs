@@ -26,8 +26,8 @@ const fail = (m) => errors.push(m);
 const warn = (m) => (final ? errors : warnings).push(m);
 
 const readJson = (p) => JSON.parse(fs.readFileSync(path.join(root, p), "utf8"));
-const claude = readJson(".claude-plugin/plugin.json");
-const claudeMcp = readJson(".mcp.json");
+const claude = readJson("plugin/.claude-plugin/plugin.json");
+const claudeMcp = readJson("plugin/.mcp.json");
 const listing = readJson("openai/listing.json");
 
 // ---- plugin.json --------------------------------------------------------------------------
@@ -100,11 +100,11 @@ if (I.brandColorDark && contrast(I.brandColorDark, "#212121") < 2) fail("brandCo
 for (const k of ["logo", "logoDark", "composerIcon", "composerIconDark", "onboardingSkill"]) {
   if (!I[k]) { if (k === "logo" || k === "composerIcon") fail(`${k} is required`); continue; }
   if (!I[k].startsWith("./")) fail(`${k} must start with ./`);
-  else if (!fs.existsSync(path.join(root, I[k]))) fail(`${k} points at a missing file: ${I[k]}`);
+  else if (!fs.existsSync(path.join(root, "plugin", I[k]))) fail(`${k} points at a missing file: ${I[k]}`);
 }
 for (const k of ["logo", "composerIcon"]) {
-  if (!I[k] || !fs.existsSync(path.join(root, I[k]))) continue;
-  const buf = fs.readFileSync(path.join(root, I[k]));
+  if (!I[k] || !fs.existsSync(path.join(root, "plugin", I[k]))) continue;
+  const buf = fs.readFileSync(path.join(root, "plugin", I[k]));
   if (buf.length > 5 * 1024 * 1024) fail(`${k} is over 5 MiB`);
   if (buf.subarray(1, 4).toString() === "PNG") {
     const w = buf.readUInt32BE(16), h = buf.readUInt32BE(20);
@@ -132,7 +132,7 @@ if (hit) fail(`listing copy contains "${hit[0]}" (no pricing, promotions or comp
 if (/\b(mcp|plugin)\b/i.test(I.displayName)) fail('displayName must not include "MCP" or "Plugin"');
 
 // Skills: front matter is a mapping with name + description only (portable subset), description <=1024.
-const skillsDir = path.join(root, "skills");
+const skillsDir = path.join(root, "plugin", "skills");
 const skillNames = new Set();
 for (const dir of fs.readdirSync(skillsDir)) {
   if (dir.startsWith(".")) { fail(`skill folder ${dir} must not start with "."`); continue; }
@@ -200,8 +200,8 @@ fs.rmSync(stage, { recursive: true, force: true });
 fs.mkdirSync(stage, { recursive: true });
 fs.writeFileSync(path.join(stage, "plugin.json"), JSON.stringify(plugin, null, 2) + "\n");
 fs.writeFileSync(path.join(stage, "mcp.json"), JSON.stringify(mcp, null, 2) + "\n");
-fs.cpSync(path.join(root, "skills"), path.join(stage, "skills"), { recursive: true });
-fs.cpSync(path.join(root, "assets"), path.join(stage, "assets"), { recursive: true });
+fs.cpSync(path.join(root, "plugin", "skills"), path.join(stage, "skills"), { recursive: true });
+fs.cpSync(path.join(root, "plugin", "assets"), path.join(stage, "assets"), { recursive: true });
 
 const zipName = `${plugin.name}-${plugin.version}-openai.zip`;
 const zipPath = path.join(dist, zipName);
